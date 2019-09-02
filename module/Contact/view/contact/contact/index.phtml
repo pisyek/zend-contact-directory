@@ -1,0 +1,32 @@
+<h1>List of Contact <small><a href="<?= $this->url('contact', ['action' => 'add']) ?>">Add new contact</a></small></h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php foreach($this->paginator as $contact): ?>
+        <tr>
+            <td>ss</td>
+            <td><?= $this->escapeHtml($contact->name) ?></td>
+            <td><?= $this->escapeHtml($contact->phone) ?></td>
+            <td>
+                <a href="<?= $this->url('contact', ['action' => 'edit', 'id' => $contact->id]) ?>">Edit</a>
+                <a href="<?= $this->url('contact', ['action' => 'delete', 'id' => $contact->id]) ?>">Delete</a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>
+
+<?= $this->paginationControl(
+        $this->paginator,
+        'sliding',
+        'partial/paginator',
+        ['route' => 'contact']
+) ?>
